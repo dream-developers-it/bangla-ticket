@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { query, directQuery } from '@/lib/db';
 import { v4 as uuidv4 } from 'uuid';
+import { sendSlackMessage } from '@/lib/slack';
 
 function generateTicketNumber(eventId: string, index: number) {
   const now = new Date();
@@ -76,6 +77,18 @@ export async function POST(request: Request) {
     if (successfulTickets.length !== numberOfTickets) {
       throw new Error('Failed to purchase all requested tickets');
     }
+
+    // Send Slack notification
+    const slackMessage = `
+🎫 *New Ticket Purchase*
+• Customer: ${customerName}
+• Phone: ${phoneNumber}
+• Number of Tickets: ${numberOfTickets}
+• Ticket Numbers: ${successfulTickets.join(', ')}
+• Total Amount: ₹${50 * numberOfTickets}
+    `.trim();
+
+    await sendSlackMessage(slackMessage);
 
     return NextResponse.json({ 
       success: true,

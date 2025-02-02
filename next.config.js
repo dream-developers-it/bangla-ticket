@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    MYSQL_HOST: 'localhost',
-    MYSQL_USER: 'lottery_user',
-    MYSQL_PASSWORD: 'limon@123',
-    MYSQL_DATABASE: 'lottery_db',
+    DB_HOST: process.env.DB_HOST,
+    DB_USER: process.env.DB_USER,
+    DB_PASSWORD: process.env.DB_PASSWORD,
+    DB_NAME: process.env.DB_NAME,
+    SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL,
   },
 }
 
