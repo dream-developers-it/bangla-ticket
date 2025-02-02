@@ -20,9 +20,7 @@ export default function AdminLogin() {
     try {
       const response = await fetch('/api/admin/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -32,9 +30,7 @@ export default function AdminLogin() {
         throw new Error(data.error || 'Login failed');
       }
 
-      // Redirect to dashboard on success
       router.push('/dashboard');
-      
     } catch (error: any) {
       setError(error.message || 'Failed to login');
     } finally {
@@ -45,15 +41,13 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-blue-100 opacity-70" />
-      
-      <div className="relative flex items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="relative flex items-center justify-center min-h-screen py-12 px-4">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Admin Login</h2>
-            <p className="mt-2 text-gray-600">Sign in to access dashboard</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-100">
+          <div className="bg-white rounded-xl shadow-xl p-8">
             {error && (
               <div className="mb-4 p-4 rounded-lg bg-red-50 border border-red-200 text-red-700">
                 {error}
@@ -62,30 +56,26 @@ export default function AdminLogin() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                  <FaEnvelope className="text-blue-500" />
+                <label className="block text-sm font-medium text-gray-700">
                   Email Address
                 </label>
                 <input
-                  id="email"
                   type="email"
                   required
-                  className="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
-                  <FaLock className="text-blue-500" />
+                <label className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <input
-                  id="password"
                   type="password"
                   required
-                  className="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
@@ -94,11 +84,12 @@ export default function AdminLogin() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transform transition-all duration-150 hover:scale-[1.02]"
+                className="w-full py-3 px-4 border border-transparent rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
               >
                 {loading ? (
                   <>
-                    <FaSpinner className="animate-spin mr-2" /> Signing in...
+                    <FaSpinner className="animate-spin inline mr-2" /> 
+                    Signing in...
                   </>
                 ) : (
                   'Sign In'
