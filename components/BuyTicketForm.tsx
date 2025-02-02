@@ -126,37 +126,32 @@ const BuyTicketForm = ({ eventId, ticketPrice }: BuyTicketFormProps) => {
   const totalAmount = ticketPrice * (formData.numberOfTickets || 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       <Navbar />
+      
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-repeat opacity-5" 
-        style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-blue-100 opacity-70"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 25px 25px, rgba(0, 0, 0, 0.2) 2%, transparent 0%),
+            radial-gradient(circle at 75px 75px, rgba(0, 0, 0, 0.2) 2%, transparent 0%)
+          `,
+          backgroundSize: '100px 100px',
         }}
       />
 
-      {/* Floating Tickets Animation */}
+      {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-white/10 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 2}s`,
-              fontSize: `${Math.random() * 40 + 20}px`
-            }}
-          >
-            <FaTicketAlt />
-          </div>
-        ))}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000" />
       </div>
 
       <div className="relative flex items-center justify-center min-h-[calc(100vh-64px)] py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
           <div className="flex justify-center mb-6">
-            <div className="bg-blue-600 rounded-full p-4 shadow-lg">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-full p-4 shadow-lg transform transition-transform hover:scale-105">
               <FaTicketAlt className="text-white text-3xl" />
             </div>
           </div>
@@ -307,7 +302,7 @@ const BuyTicketForm = ({ eventId, ticketPrice }: BuyTicketFormProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center items-center py-4 px-6 border border-transparent rounded-xl text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transform transition-all duration-150 hover:scale-[1.02]"
+              className="w-full flex justify-center items-center py-4 px-6 border border-transparent rounded-xl text-lg font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transform transition-all duration-150 hover:scale-[1.02]"
             >
               {loading ? (
                 <>
