@@ -26,7 +26,7 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 1;
+    opacity: 0.1;
   }
   100% {
     transform: translateY(-1000px) rotate(720deg);
@@ -63,4 +63,54 @@ body {
 
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+
+@keyframes lottery-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.lottery-ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ff4d4d, #ff8533);
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  animation: lottery-bounce 2s ease-in-out infinite;
+}
+
+.lottery-ball-container {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.lottery-ball:nth-child(2) {
+  animation-delay: 0.2s;
+  background: linear-gradient(145deg, #33cc33, #00ff00);
+}
+
+.lottery-ball:nth-child(3) {
+  animation-delay: 0.4s;
+  background: linear-gradient(145deg, #3366ff, #0033cc);
+}
+
+.lottery-ball:nth-child(4) {
+  animation-delay: 0.6s;
+  background: linear-gradient(145deg, #ffcc00, #ff9900);
+}
+
+.lottery-ball:nth-child(5) {
+  animation-delay: 0.8s;
+  background: linear-gradient(145deg, #ff33cc, #cc00ff);
 }
